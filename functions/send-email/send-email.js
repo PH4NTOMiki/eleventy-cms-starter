@@ -1,5 +1,5 @@
 const SparkPost = require('sparkpost');
-const client = new SparkPost(process.env.SPARKPOST, {endpoint:'https://api.eu.sparkpost.com:443'});
+const client = new SparkPost(process.env.SPARKPOST, {origin:'https://api.eu.sparkpost.com:443'});
 
 exports.handler = function(event, context, callback) {
   client.transmissions
