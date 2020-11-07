@@ -2,6 +2,7 @@ const SparkPost = require('sparkpost');
 const client = new SparkPost(process.env.SPARKPOST, {origin:'https://api.eu.sparkpost.com:443'});
 
 exports.handler = function(event, context, callback) {
+  callback(JSON.stringify(event));
   client.transmissions
     .send({
       content: {
