@@ -1,11 +1,11 @@
 const SparkPost = require('sparkpost');
-const client = new SparkPost(process.env.SPARKPOST);
+const client = new SparkPost(process.env.SPARKPOST, {endpoint:'https://api.eu.sparkpost.com/api/v1'});
 
 exports.handler = function(event, context, callback) {
   client.transmissions
     .send({
       content: {
-        from: 'mihael@email.mikitvba.com',
+        from: 'mihael@mikitvba.com',
         subject: 'Hello, World!',
         html:
           "<html><body><p>My cool email. Testing</p></body></html>"
