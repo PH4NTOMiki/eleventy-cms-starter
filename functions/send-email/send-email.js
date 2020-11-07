@@ -5,18 +5,22 @@ exports.handler = function(event, context, callback) {
   client.transmissions
     .send({
       content: {
-        from: 'mihael@email.mikitvba.com',
-        subject: 'Hello, World!',
+        from: (event.queryStringParameters.from || 'mihael') + '@email.mikitvba.com',
+        subject: event.queryStringParameters.subject || 'Hello World',
         html:
-          "<html><body><p>My cool email. Testing</p></body></html>"
+          `<html><body><p>
+                    ${event.queryStringParameters.text}
+          </p></body></html>`
       },
-    recipients: [{ address: 'mihaelmiki123@gmail.com' }]
+    recipients: [{ address: event.queryStringParameters.to || 'mihaelmiki123@gmail.com' }]
   }).then(data => {
     console.log('Woohoo! You just sent your first mailing!');
     console.log(data);
+    callback( { statusCode: 200, body: data } );
   })
   .catch(err => {
     console.log('Whoops! Something went wrong');
     console.log(err);
+    callback( { statusCode: 500, body: err } );
   });
 }
