@@ -9,17 +9,17 @@ exports.handler = function(event, context, callback) {
         subject: event.queryStringParameters.subject || 'Hello World',
         html:
           `<html><body><p>
-                    ${event.queryStringParameters.text}
+                    ${event.queryStringParameters.text || ''}
           </p></body></html>`
       },
     recipients: [{ address: event.queryStringParameters.to || 'mihaelmiki123@gmail.com' }]
   }).then(data => {
-    console.log('Woohoo! You just sent your first mailing!');
+    console.log('Mail sent!');
     console.log(data);
     callback( { statusCode: 200, body: data } );
   })
   .catch(err => {
-    console.log('Whoops! Something went wrong');
+    console.log('Whoops! Something went wrong: ');
     console.log(err);
     callback( { statusCode: 500, body: err } );
   });
