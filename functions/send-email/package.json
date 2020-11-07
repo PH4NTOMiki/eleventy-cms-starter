@@ -1,0 +1,10 @@
+{
+  "name": "send-email",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {},
+  "devDependencies": {
+    "": "^2.1.14"
+  },
+  "scripts": {}
+}
